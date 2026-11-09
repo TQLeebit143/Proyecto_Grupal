@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICE CREAM</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="theme-default light-mode">
+
+  <div id="toast-alert" class="toast-hidden">
+    <div class="toast-titulo" id="toast-titulo">ICE CREAM</div>
+    <div class="toast-cuerpo" id="toast-cuerpo">Notificación comercial.</div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <header class="navbar-icecream">
+      <div class="nav-brand">
+        <button id="menuHambBtn" class="hamburger-btn" title="Menú">☰</button>
+        <span class="logo-text">ICE CREAM 🍦</span>
+      </div>
+
+      <nav id="navLinksDesktop" class="nav-links-desktop">
+        <a href="#" class="nav-link active" onclick="cambiarSeccion('sec-inicio', this)">Inicio</a>
+        <a href="#" class="nav-link" onclick="cambiarSeccion('sec-menu', this)">Menú & Helados</a>
+        <a href="#" class="nav-link" onclick="cambiarSeccion('sec-historia', this)">Nuestra Historia</a>
+        <a href="#" class="nav-link" onclick="cambiarSeccion('sec-contacto', this)">Contacto</a>
+        <a href="#" class="nav-link nav-link-bitacora" onclick="cambiarSeccion('sec-bitacora', this)">📊 Actividad & Bitácora</a>
+      </nav>
+
+      <div class="nav-controls">
+        <div class="cart-summary-box">
+          <span>Orden: <strong id="navItemCount">0</strong> items</span>
+        </div>
+        <button id="btn-tema" class="btn-theme-toggle">☀️ Modo Día</button>
+      </div>
+
+      <div id="mobileDropdownMenu" class="mobile-dropdown-hidden">
+        <a href="#" onclick="cambiarSeccion('sec-inicio'); toggleHamb();">🏠 Inicio</a>
+        <a href="#" onclick="cambiarSeccion('sec-menu'); toggleHamb();">🍨 Menú & Helados</a>
+        <a href="#" onclick="cambiarSeccion('sec-historia'); toggleHamb();">📖 Nuestra Historia</a>
+        <a href="#" onclick="cambiarSeccion('sec-contacto'); toggleHamb();">✉️ Contacto</a>
+        <a href="#" onclick="cambiarSeccion('sec-bitacora'); toggleHamb();">📊 Actividad & Bitácora</a>
+      </div>
+    </header>
+
+    <main class="main-content-container">
+
+      <section id="sec-inicio" class="content-section active-section">
+        <div class="hero-icecream-banner">
+          <div class="hero-text-content">
+            <span class="hero-badge">ARTESANAL & MAGIA CREMOSA</span>
+            <h1>Sabor Real en Cada Cucharada</h1>
+            <p>Fusionamos leche fresca de granja con frutos seleccionados del día y cacao fino de aroma para dar vida al helado perfecto.</p>
+
+            <div style="display: flex; gap: 12px; margin-top: 10px;">
+              <button class="btn-primary-action" onclick="cambiarSeccion('sec-menu', document.querySelectorAll('.nav-link')[1])">Explorar Menú Completo ➔</button>
+              <button class="btn-secondary-action" onclick="cambiarSeccion('sec-historia', document.querySelectorAll('.nav-link')[2])">Conoce Nuestra Historia</button>
+            </div>
+          </div>
+          <div class="hero-image-content">
+            <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=600&auto=format&fit=crop" alt="Helado Artesanal" class="hero-main-img">
+          </div>
+        </div>
+
+        <div class="features-summary-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🥛</div>
+            <h4>Lácteos Puros</h4>
+            <p>100% Leche fresca batida a baja velocidad.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🍓</div>
+            <h4>Frutas de Estación</h4>
+            <p>Prensado en frío natural sin conservantes.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🍫</div>
+            <h4>Cacao de Origen</h4>
+            <p>Chocolates seleccionados al 70% de pureza.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">❄️</div>
+            <h4>Textura Sedosa</h4>
+            <p>Servido en la temperatura idónea para degustación.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-menu" class="content-section" style="display: none;">
+        <div class="menu-tabs-bar">
+          <button class="tab-cat-btn active" onclick="filtrarTab('all', this)">✨ TODO EL MENÚ</button>
+          <button class="tab-cat-btn" onclick="filtrarTab('cremosos', this)">🍨 HELADOS CREMOSOS</button>
+          <button class="tab-cat-btn" onclick="filtrarTab('frutales', this)">🍓 PALETAS FRUTALES</button>
+          <button class="tab-cat-btn" onclick="filtrarTab('chocolate', this)">🍫 ESPECIALES CACAO</button>
+          <button class="tab-cat-btn" onclick="filtrarTab('gourmet', this)">👑 COPAS GOURMET</button>
+        </div>
+
+        <div class="icecream-grid-layout" style="margin-top: 12px;">
+          <div class="grid-books-scroll" id="gridContenedorHelados">
+          </div>
+
+          <aside class="sidebar-detalle-panel" id="panelDetalleHelado">
+            <div class="detalle-empty-state">
+              <div class="book-icon-placeholder">🍦</div>
+              <h3>Ficha Técnica del Helado</h3>
+              <p>Haz clic en cualquier opción del menú para desplegar sus notas de sabor, ingredientes y añadirlo a tu orden.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="sec-historia" class="content-section" style="display: none;">
+        <div class="history-full-page">
+          <div class="history-hero-box">
+            <span class="hero-badge">DESDE NUESRO TALLER ARTESANAL</span>
+            <h2>Nuestra Historia & Pasión por el Helado Real</h2>
+            <p>Inspirados en las recetas tradicionales italianas y el amor por los ingredientes locales de alta calidad, creamos un santuario gastronómico donde cada sabor evoca un recuerdo inolvidable.</p>
+          </div>
+
+          <div class="history-grid-four">
+            <div class="history-card-item">
+              <div class="h-icon">🌱</div>
+              <h3>Origen 100% Natural</h3>
+              <p>Rechazamos los colorantes industriales y saborizantes químicos. Coloreamos con remolacha, espirulina y el extracto vivo de frutos frescos.</p>
+            </div>
+            <div class="history-card-item">
+              <div class="h-icon">🥣</div>
+              <h3>Batido Lento</h3>
+              <p>Procesamos cada lote en pequeñas cantidades para controlar la densidad y lograr una estructura suave y sedosa al paladar.</p>
+            </div>
+            <div class="history-card-item">
+              <div class="h-icon">👨‍🍳</div>
+              <h3>Maestros Heladeros</h3>
+              <p>Nuestros chefs capacitan sus recetas continuamente para maridar especias, chocolates amargos y reducciones frutales de autor.</p>
+            </div>
+            <div class="history-card-item">
+              <div class="h-icon">🏆</div>
+              <h3>Calidad Garantizada</h3>
+              <p>Mantener la cadena de frío exacta es nuestro compromiso para asegurar que la primera cucharada sea idéntica a la última.</p>
+            </div>
+          </div>
+
+          <div class="history-banner-quote">
+            <p><em>"Un buen helado no es solo un postre, es un instante de pausa y felicidad pura en el día."</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-contacto" class="content-section" style="display: none;">
+        <div class="contacto-section-layout">
+          <div class="contacto-form-box">
+            <h2>Contáctanos o Solicita un Carrito</h2>
+            <p>Lleva nuestra heladería a tus eventos especiales, bodas o cumpleaños corporativos.</p>
+            <form id="formContactoHelados" onsubmit="event.preventDefault(); enviarContacto();">
+              <input type="text" id="inputNombreContacto" placeholder="Tu Nombre Completo" required class="input-search-custom" style="margin-bottom: 10px;">
+              <input type="email" id="inputEmailContacto" placeholder="Tu Correo Electrónico" required class="input-search-custom" style="margin-bottom: 10px;">
+              <textarea id="inputMsgContacto" placeholder="Escribe tu mensaje o solicitud..." rows="4" class="input-search-custom" style="margin-bottom: 10px;"></textarea>
+              <button type="submit" class="btn-primary-action" style="width: 100%;">Enviar Mensaje a Ice Cream</button>
+            </form>
+          </div>
+
+          <div class="contacto-info-box">
+            <h3>Sucursal Central & Atención</h3>
+            <p>📍 Av. Principal #123, Zona Comercial</p>
+            <p>📞 Teléfono / Pedidos: +591 700-00000</p>
+            <p>⏰ Horarios: Lunes a Domingo de 10:00 AM a 10:00 PM</p>
+            
+            <h4 style="margin-top: 18px; margin-bottom: 10px;">Encuéntranos en Redes</h4>
+            <div class="social-icons-row">
+              <a href="https://wa.me/" target="_blank" class="social-btn whatsapp">💬 WhatsApp</a>
+              <a href="https://facebook.com" target="_blank" class="social-btn facebook">📘 Facebook</a>
+              <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">🎵 TikTok</a>
+              <a href="https://maps.google.com" target="_blank" class="social-btn maps">📍 Ubicación Maps</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-bitacora" class="content-section" style="display: none;">
+        <div class="bitacora-container-box">
+          <h2>📊 Panel de Actividad y Bitácoras</h2>
+          <p>Registro interactivo de navegación, eventos de interfaz y confirmación de compras.</p>
+          <div class="bitacora-split-columns">
+            <div class="bitacora-col">
+              <h3>📝 Bitácora de Eventos (UI)</h3>
+              <div id="listaBitacoraEventos" class="bitacora-scroll-box">
+                <p style="color:var(--text-sub); font-size:0.78rem;">Sin registros aún.</p>
+              </div>
+            </div>
+            <div class="bitacora-col">
+              <h3>🛒 Compras & Órdenes Confirmadas</h3>
+              <div id="listaBitacoraCompras" class="bitacora-scroll-box">
+                <p style="color:var(--text-sub); font-size:0.78rem;">Sin compras registradas.</p>
+              </div>
+            </div>
+          </div>
+          <button class="btn-primary-action" style="margin-top: 15px;" onclick="vaciarBitacoras()">Limpiar Bitácoras</button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
