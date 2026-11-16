@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es" data-default-theme="light" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ICE CREAM — Heladería artesanal. Sabores cremosos, paletas frutales, cacao gourmet y copas especiales.">
+  <meta name="theme-color" content="#ff70a6">
+  <title>ICE CREAM — Heladería Artesanal</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+  <link rel="stylesheet" href="shared/base.css">
+  <link rel="stylesheet" href="CSS/estilos.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dw2-theme') || document.documentElement.dataset.defaultTheme || 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'light'; }
+    })();
+  </script>
+</head>
+<body class="ice-site">
+
+  <header class="ice-nav">
+    <div class="ice-nav-inner">
+      <a class="ice-brand" href="#inicio">
+        <span class="ice-brand-logo"><img src="assets/icon.svg" alt="Ice Cream"></span>
+        <span class="ice-brand-text">
+          <strong>ICE CREAM <span>🍦</span></strong>
+          <small>Heladería artesanal</small>
+        </span>
+      </a>
+
+      <nav id="iceLinks" class="ice-links" aria-label="Navegación principal">
+        <a href="#inicio" class="active">Inicio</a>
+        <a href="#menu">Menú &amp; helados</a>
+        <a href="#historia">Nuestra historia</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#bitacora" class="admin-only">📊 Bitácoras</a>
+      </nav>
+
+      <div class="ice-actions">
+        <span class="ice-alias-pill">🍨 <b id="iceAliasDisplay">Invitado</b></span>
+        <button type="button" id="iceCartBtn" class="ice-cart-btn" aria-label="Abrir mi orden">
+          🛒 <span>Orden</span> <b id="iceNavCount">0</b>
+        </button>
+        <button type="button" class="btn btn-icon btn-ghost ice-theme-btn" data-theme-toggle aria-label="Cambiar tema">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <button type="button" id="iceAccountBtn" class="btn btn-primary btn-sm" data-open-modal="iceCuentaModal">👤 Mi cuenta</button>
+        <button type="button" class="ice-hamb" data-nav-toggle="iceMobileNav" aria-controls="iceMobileNav" aria-expanded="false" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+
+    <nav id="iceMobileNav" class="ice-mobile-nav" data-nav aria-label="Menú móvil">
+      <a href="#inicio">🏠 Inicio</a>
+      <a href="#menu">🍨 Menú &amp; helados</a>
+      <a href="#historia">📖 Nuestra historia</a>
+      <a href="#contacto">✉️ Contacto</a>
+      <a href="#bitacora" class="admin-only">📊 Bitácoras</a>
+    </nav>
+  </header>
+
+  <main class="ice-main">
+
+    <section id="inicio" class="ice-hero-section">
+      <div class="ice-hero">
+        <div class="ice-hero-text">
+          <span class="ice-badge">🍓 ARTESANAL &amp; MAGIA CREMOSA</span>
+          <h1>Sabor real en cada <em>cucharada</em></h1>
+          <p>Fusionamos leche fresca de granja con frutos seleccionados del día y cacao fino de aroma para dar vida al helado perfecto.</p>
+          <div class="ice-hero-actions">
+            <a href="#menu" class="btn btn-primary">Explorar el menú ➔</a>
+            <a href="#historia" class="btn btn-ghost">Nuestra historia</a>
+          </div>
+
+          <form id="iceAliasForm" class="ice-alias-form" autocomplete="off">
+            <label for="iceAliasInput">Tu nombre / alias</label>
+            <div class="row">
+              <input id="iceAliasInput" class="input" type="text" maxlength="32" placeholder="Ej: Sofi y Bruno">
+              <button type="submit" class="btn btn-accent">Guardar</button>
+            </div>
+          </form>
+
+          <div class="ice-hero-stats">
+            <div><strong>8</strong><span>sabores artesanales</span></div>
+            <div><strong>100%</strong><span>ingredientes naturales</span></div>
+            <div><strong>4.9★</strong><span>valoración de clientes</span></div>
+          </div>
+        </div>
+
+        <div class="ice-hero-media">
+          <div class="ice-hero-blob"></div>
+          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=800&auto=format&fit=crop"
+               alt="Helado artesanal Ice Cream" onerror="window.App&amp;&amp;App.imgFallback(this,'🍦','light')">
+          <div class="ice-float-card top">🍦 <div><strong>Hecho hoy</strong><small>Lote fresco diario</small></div></div>
+          <div class="ice-float-card bottom">⭐ <div><strong>4.9 / 5</strong><small>+320 reseñas felices</small></div></div>
+        </div>
+      </div>
+
+      <div class="ice-features">
+        <div class="ice-feature"><span>🥛</span><h3>Lácteos puros</h3><p>100% leche fresca batida a baja velocidad.</p></div>
+        <div class="ice-feature"><span>🍓</span><h3>Frutas de estación</h3><p>Pulpa natural prensada en frío, sin conservantes.</p></div>
+        <div class="ice-feature"><span>🍫</span><h3>Cacao de origen</h3><p>Chocolate fino de aroma seleccionado al 70%.</p></div>
+        <div class="ice-feature"><span>❄️</span><h3>Textura sedosa</h3><p>Servido en la temperatura ideal de degustación.</p></div>
+      </div>
+    </section>
+
+    <section id="menu" class="ice-section">
+      <div class="ice-section-head">
+        <div>
+          <span class="ice-kicker">Nuestro menú</span>
+          <h2>Helados que enamoran</h2>
+          <p>Elige tu favorito, míralo en detalle y arma tu orden en segundos.</p>
+        </div>
+        <span class="badge accent" id="iceMenuBadge">8 sabores</span>
+      </div>
+
+      <div class="ice-toolbar">
+        <div class="field grow">
+          <label for="iceSearch">Buscar un sabor</label>
+          <input id="iceSearch" class="input" type="search" placeholder="🔍 Vainilla, fresa, chocolate…" autocomplete="off">
+        </div>
+      </div>
+
+      <div id="iceFiltros" class="chips ice-chips" role="group" aria-label="Filtros del catálogo"></div>
+      <p id="iceResultInfo" class="ice-result-info"></p>
+
+      <div class="ice-menu-layout">
+        <div id="iceGrid" class="ice-grid"></div>
+        <aside id="icePanel" class="ice-panel" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <section id="historia" class="ice-section ice-history">
+      <div class="ice-history-grid">
+        <div class="ice-history-text">
+          <span class="ice-kicker">Desde 2018</span>
+          <h2>La tradición de Ice Cream</h2>
+          <p>Nuestra misión ha sido devolver la dignidad al helado artesanal. Lejos de polvos industriales o saborizantes químicos, volvemos a la receta tradicional: buena leche, fruta real y tiempo.</p>
+          <div class="ice-pillars">
+            <div class="ice-pillar"><h3>🌱 Origen sostenible</h3><p>Trabajamos con comunidades productoras de cacao y pequeños agricultores de berries.</p></div>
+            <div class="ice-pillar"><h3>⏳ Maduración lenta</h3><p>Cada base reposa 12 horas para que las proteínas emulsionen perfectamente.</p></div>
+            <div class="ice-pillar"><h3>❄️ Calidad garantizada</h3><p>Cadena de frío exacta para que la primera cucharada sea idéntica a la última.</p></div>
+          </div>
+        </div>
+        <div class="ice-history-media">
+          <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=700&auto=format&fit=crop"
+               alt="Copa de helado artesanal" onerror="window.App&amp;&amp;App.imgFallback(this,'🍨','light')">
+          <blockquote>“Un buen helado no es solo un postre, es un instante de pausa y felicidad pura en el día.”</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="ice-section">
+      <div class="ice-contact-grid">
+        <div class="ice-contact-form ice-card-pad">
+          <span class="ice-kicker">Hablemos</span>
+          <h2>Contáctanos o pide un carrito</h2>
+          <p class="muted">Lleva nuestra heladería a bodas, cumpleaños y eventos corporativos.</p>
+          <form id="iceContactForm" class="stack mt-2" novalidate>
+            <div class="field">
+              <label for="iceContactName">Tu nombre completo *</label>
+              <input id="iceContactName" class="input" type="text" maxlength="60" placeholder="Ej: Sofía Gutiérrez">
+            </div>
+            <div class="field">
+              <label for="iceContactEmail">Correo electrónico *</label>
+              <input id="iceContactEmail" class="input" type="email" maxlength="80" placeholder="tucorreo@ejemplo.com">
+            </div>
+            <div class="field">
+              <label for="iceContactMsg">Mensaje o solicitud *</label>
+              <textarea id="iceContactMsg" class="textarea" rows="4" maxlength="500" placeholder="Cuéntanos qué necesitas…"></textarea>
+            </div>
+            <p id="iceContactError" class="form-error" role="alert"></p>
+            <button type="submit" class="btn btn-primary btn-block">Enviar mensaje 💌</button>
+          </form>
+        </div>
+
+        <div class="ice-contact-info">
+          <h3>Sucursal central</h3>
+          <ul class="ice-info-list">
+            <li><span>📍</span><div><strong>Dirección</strong><small>Av. Principal #123, Zona Comercial</small></div></li>
+            <li><span>📞</span><div><strong>Teléfono / pedidos</strong><small>+591 67301341</small></div></li>
+            <li><span>⏰</span><div><strong>Horarios</strong><small>Lunes a domingo · 10:00 a 22:00</small></div></li>
+            <li><span>✉️</span><div><strong>Correo</strong><small>hola@icecream.bo</small></div></li>
+          </ul>
+          <h4>Síguenos</h4>
+          <div class="ice-social">
+            <a href="https://wa.me/59167301341" target="_blank" rel="noopener" class="btn btn-wa btn-sm">💬 WhatsApp</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">📘 Facebook</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">🎵 TikTok</a>
+            <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">📍 Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bitacora" class="ice-section admin-only">
+      <div class="ice-section-head">
+        <div>
+          <span class="ice-kicker">Administración</span>
+          <h2>📊 Auditoría y control</h2>
+          <p>Actividad de clientes, pedidos confirmados y métricas de caja.</p>
+        </div>
+        <div class="row wrap">
+          <button type="button" id="iceRefreshLogs" class="btn btn-ghost btn-sm">↻ Actualizar</button>
+          <button type="button" id="iceClearLogs" class="btn btn-danger btn-sm">🗑️ Limpiar</button>
+        </div>
+      </div>
+
+      <div class="ice-kpis kpi-grid">
+        <div class="kpi"><span class="kpi-label">Ventas</span><strong class="kpi-value" id="iceKpiVentas">0 BOB</strong><span class="kpi-hint">caja acumulada</span></div>
+        <div class="kpi"><span class="kpi-label">Pedidos</span><strong class="kpi-value" id="iceKpiPedidos">0</strong><span class="kpi-hint">confirmados</span></div>
+        <div class="kpi"><span class="kpi-label">Eventos</span><strong class="kpi-value" id="iceKpiEventos">0</strong><span class="kpi-hint">acciones registradas</span></div>
+        <div class="kpi"><span class="kpi-label">Ticket promedio</span><strong class="kpi-value" id="iceKpiTicket">0 BOB</strong><span class="kpi-hint">por pedido</span></div>
+      </div>
+
+      <div class="ice-logs-grid">
+        <div class="ice-card-pad">
+          <h3>📋 Bitácora de eventos</h3>
+          <div id="iceLogEventos" class="log-box" aria-live="polite"></div>
+        </div>
+        <div class="ice-card-pad">
+          <h3>🛒 Ventas confirmadas</h3>
+          <div id="iceLogVentas" class="log-box" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="ice-admin-note">
+        <span>👑 Sesión de administrador activa.</span>
+        <button type="button" id="iceAdminLogoutBottom" class="btn btn-danger btn-sm">🚪 Cerrar sesión</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="ice-footer">
+    <div class="ice-footer-inner">
+      <div class="ice-footer-brand">
+        <img src="assets/icon.svg" alt="" class="ice-footer-logo">
+        <div><strong>ICE CREAM</strong><small>Heladería artesanal · La Paz, Bolivia</small></div>
+      </div>
+      <p>© <span id="iceYear"></span> Ice Cream. Hecho con leche fresca, fruta real y mucho cariño.</p>
+      <div class="row wrap">
+        <a href="#menu" class="small">Menú</a>
+        <a href="#contacto" class="small">Contacto</a>
+        <button type="button" class="ice-footer-admin" data-open-modal="iceCuentaModal">Acceso admin</button>
+      </div>
+    </div>
+  </footer>
+
+  <div id="iceCartOverlay" class="ice-cart-overlay" aria-hidden="true"></div>
+  <aside id="iceCartDrawer" class="ice-cart-drawer" aria-hidden="true" aria-label="Mi orden">
+    <div class="ice-cart-head">
+      <div>
+        <h3>🛒 Tu orden</h3>
+        <p class="small muted" id="iceCartSubtitle">0 productos seleccionados</p>
+      </div>
+      <button type="button" id="iceCartClose" class="modal-close" aria-label="Cerrar orden">✕</button>
+    </div>
+    <ul id="iceCartList" class="ice-cart-list"></ul>
+    <div class="ice-cart-total"><span>TOTAL</span><strong id="iceCartTotal">0 BOB</strong></div>
+    <button type="button" id="iceCheckoutBtn" class="btn btn-primary btn-block">💳 Confirmar pedido</button>
+    <button type="button" id="iceCartClear" class="btn btn-ghost btn-block mt-1">🗑️ Vaciar orden</button>
+    <p class="ice-cart-note">Pedidos listos para retiro en tienda o delivery dentro de la zona central.</p>
+  </aside>
+
+  <div id="iceDetailModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="iceDetailTitle">
+      <div class="modal-head">
+        <div>
+          <span id="iceDetailCat" class="badge accent">Detalle</span>
+          <h3 id="iceDetailTitle" class="modal-title mt-1">Sabor</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div class="modal-media"><img id="iceDetailImg" src="assets/icon.svg" alt="Detalle del helado"></div>
+      <p id="iceDetailDesc" class="muted mt-1"></p>
+      <p id="iceDetailNota" class="small muted"></p>
+      <div class="order-total"><span>PRECIO</span><strong id="iceDetailPrice">0 BOB</strong></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal>Cerrar</button>
+        <button type="button" id="iceDetailAdd" class="btn btn-primary">Añadir a la orden</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="iceCheckoutModal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="iceCheckoutTitle">
+      <div class="modal-head">
+        <div>
+          <h3 id="iceCheckoutTitle" class="modal-title">Confirmar pedido</h3>
+          <p class="modal-sub">Revisa tu orden y completa los datos.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div id="iceCheckoutResumen" class="checkout-resumen"></div>
+      <div class="order-total"><span>TOTAL A PAGAR</span><strong id="iceCheckoutTotal">0 BOB</strong></div>
+      <div class="form-grid mt-2">
+        <div class="field full">
+          <label for="iceCheckoutNombre">Nombre del cliente *</label>
+          <input id="iceCheckoutNombre" class="input" type="text" maxlength="50" placeholder="¿A nombre de quién?">
+        </div>
+        <div class="field">
+          <label for="iceCheckoutPhone">Celular</label>
+          <input id="iceCheckoutPhone" class="input" type="tel" maxlength="12" placeholder="Ej: 71234567">
+        </div>
+        <div class="field">
+          <label for="iceCheckoutEntrega">Entrega</label>
+          <select id="iceCheckoutEntrega" class="select">
+            <option value="Retiro en tienda">Retiro en tienda</option>
+            <option value="Delivery zona central">Delivery zona central</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="iceCheckoutNotas">Notas del pedido</label>
+          <input id="iceCheckoutNotas" class="input" type="text" maxlength="120" placeholder="Sin nueces, cucharas extra…">
+        </div>
+      </div>
+      <p id="iceCheckoutError" class="form-error" role="alert"></p>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal>Cancelar</button>
+        <button type="button" id="iceCheckoutConfirm" class="btn btn-primary">💳 Confirmar pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="iceSuccessModal" class="modal" aria-hidden="true">
+    <div class="modal-card compact" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <h3 class="modal-title">¡Pedido confirmado! 🍦</h3>
+          <p class="modal-sub">Gracias por elegir Ice Cream.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div id="iceSuccessBody" class="stack"></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal>Seguir explorando</button>
+        <button type="button" id="iceSuccessWa" class="btn btn-wa">💬 Enviar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="iceCuentaModal" class="modal" aria-hidden="true">
+    <div class="modal-card compact" role="dialog" aria-modal="true" aria-labelledby="iceCuentaTitle">
+      <div class="modal-head">
+        <div>
+          <h3 id="iceCuentaTitle" class="modal-title">Mi cuenta</h3>
+          <p class="modal-sub">Cliente o personal de la heladería.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+
+      <form id="iceClientForm" class="stack" autocomplete="off">
+        <div class="field">
+          <label for="iceClientAlias">Nombre / alias</label>
+          <input id="iceClientAlias" class="input" type="text" maxlength="32" placeholder="Ej: Sofi y Bruno">
+        </div>
+        <button type="submit" class="btn btn-accent btn-block">🍨 Guardar alias</button>
+      </form>
+
+      <hr class="divider">
+
+      <form id="iceAdminForm" class="stack" autocomplete="off">
+        <div class="field"><label for="iceAdminUser">Usuario</label><input id="iceAdminUser" class="input" type="text" maxlength="30" placeholder="admin"></div>
+        <div class="field"><label for="iceAdminPass">Contraseña</label><input id="iceAdminPass" class="input" type="password" maxlength="40" placeholder="••••••••"></div>
+        <p id="iceAdminError" class="form-error" role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-block">🔐 Entrar como admin</button>
+        <p class="small muted">Práctica: <strong>admin / helado123</strong> · <strong>cajero / fresa2026</strong>.</p>
+      </form>
+
+      <button type="button" id="iceAdminLogout" class="btn btn-danger btn-block hidden mt-1">🚪 Cerrar sesión admin</button>
+    </div>
+  </div>
+
+  <script src="shared/core.js"></script>
+  <script src="data/catalogo.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

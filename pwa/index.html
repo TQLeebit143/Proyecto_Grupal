@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es" data-default-theme="light" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="ICE CREAM PWA — pide tus helados artesanales favoritos desde el celular.">
+  <meta name="theme-color" content="#ff70a6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ICE CREAM">
+  <title>ICE CREAM App — Heladería Artesanal</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="../assets/icon.svg">
+  <link rel="apple-touch-icon" href="../assets/icon.svg">
+  <link rel="stylesheet" href="shared/base.css">
+  <link rel="stylesheet" href="estilos.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('dw2-theme') || document.documentElement.dataset.defaultTheme || 'light';
+        document.documentElement.dataset.theme = t;
+      } catch (e) { document.documentElement.dataset.theme = 'light'; }
+    })();
+  </script>
+</head>
+<body class="ice-pwa">
+
+  <!-- BARRA SUPERIOR -->
+  <header class="pwa-topbar">
+    <button type="button" class="pwa-brand" data-view="inicio" aria-label="Ir al inicio">
+      <span class="pwa-brand-logo"><img src="../assets/icon.svg" alt=""></span>
+      <span class="pwa-brand-text"><strong>ICE CREAM</strong><small>Heladería artesanal</small></span>
+    </button>
+    <div class="pwa-top-actions">
+      <span id="pwaOfflineBadge" class="pwa-offline hidden">Sin conexión</span>
+      <button type="button" class="pwa-icon-btn" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <button type="button" class="pwa-avatar-btn" data-view="cuenta" aria-label="Mi cuenta">🍨</button>
+    </div>
+  </header>
+
+  <main class="pwa-main">
+
+    <!-- ── INICIO ─────────────────────────────────────────── -->
+    <section id="view-inicio" class="pwa-view active" data-view-panel="inicio">
+      <div class="pwa-hero">
+        <div class="pwa-hero-copy">
+          <span class="pwa-hero-badge">🍓 ARTESANAL &amp; FRESCO</span>
+          <h1>Un helado, un <em>momento feliz</em></h1>
+          <p>Sabores cremosos, paletas frutales y cacao fino, hechos cada día con ingredientes reales.</p>
+          <div class="pwa-hero-actions">
+            <button type="button" class="btn btn-accent" data-view="menu">Ver el menú 🍦</button>
+            <a href="https://wa.me/59167301341" target="_blank" rel="noopener" class="btn pwa-hero-wa">💬 Pedir</a>
+          </div>
+        </div>
+        <div class="pwa-hero-art">
+          <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?q=80&w=700&auto=format&fit=crop"
+               alt="Helado artesanal ICE CREAM" onerror="window.App&amp;&amp;App.imgFallback(this,'🍦','light')">
+          <span class="pwa-hero-emoji">🍦</span>
+        </div>
+        <div class="pwa-hero-stats">
+          <div><strong>8</strong><span>sabores</span></div>
+          <div><strong>100%</strong><span>natural</span></div>
+          <div><strong>4.9★</strong><span>reseñas</span></div>
+        </div>
+      </div>
+
+      <div class="pwa-card pwa-alias-card">
+        <div class="pwa-alias-head">
+          <div>
+            <h3 id="pwaHello">¡Hola, Invitado!</h3>
+            <p>Guarda tu alias para agilizar tus pedidos.</p>
+          </div>
+          <span aria-hidden="true">🍨</span>
+        </div>
+        <form id="pwaAliasForm" class="pwa-inline-form" autocomplete="off">
+          <input id="pwaAliasInput" class="input" type="text" maxlength="32" placeholder="Tu nombre o alias" aria-label="Tu nombre o alias">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+
+      <div class="pwa-section-head">
+        <div><span class="pwa-kicker">Recién batidos</span><h2>Nuestros favoritos</h2></div>
+        <button type="button" class="pwa-link" data-view="menu">Ver todos ➔</button>
+      </div>
+      <div id="pwaFeatured" class="pwa-featured"></div>
+
+      <div class="pwa-perks">
+        <div><span>🥛</span><strong>Lácteos puros</strong><small>Leche fresca de granja</small></div>
+        <div><span>🍓</span><strong>Fruta real</strong><small>Sin conservantes</small></div>
+        <div><span>🍫</span><strong>Cacao de origen</strong><small>Fino de aroma 70%</small></div>
+        <div><span>❄️</span><strong>Frío perfecto</strong><small>Textura sedosa</small></div>
+      </div>
+
+      <div class="pwa-card pwa-visit">
+        <h3>📍 Visítanos</h3>
+        <p>Av. Principal #123, Zona Comercial</p>
+        <p>Lunes a domingo · 10:00 a 22:00</p>
+        <div class="pwa-visit-actions">
+          <a class="btn btn-wa btn-sm" href="https://wa.me/59167301341" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn btn-ghost btn-sm" href="https://maps.google.com" target="_blank" rel="noopener">📍 Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MENÚ ───────────────────────────────────────────── -->
+    <section id="view-menu" class="pwa-view" data-view-panel="menu">
+      <div class="pwa-view-head">
+        <span class="pwa-kicker">Nuestro menú</span>
+        <h1>Elige tu sabor</h1>
+        <p>Filtra, busca y añade tus favoritos a la orden.</p>
+      </div>
+
+      <div class="pwa-search-box">
+        <span aria-hidden="true">🔍</span>
+        <input id="pwaSearch" type="search" placeholder="Buscar vainilla, fresa, chocolate…" autocomplete="off" aria-label="Buscar un sabor">
+      </div>
+
+      <div id="pwaFiltros" class="pwa-chips" role="group" aria-label="Filtros del catálogo"></div>
+      <p id="pwaResultInfo" class="pwa-result-info"></p>
+      <div id="pwaGrid" class="pwa-grid"></div>
+    </section>
+
+    <!-- ── ORDEN ──────────────────────────────────────────── -->
+    <section id="view-orden" class="pwa-view" data-view-panel="orden">
+      <div class="pwa-view-head">
+        <span class="pwa-kicker">Mi pedido</span>
+        <h1>Tu orden</h1>
+        <p id="pwaOrderSub">Aún no agregaste productos.</p>
+      </div>
+
+      <div id="pwaOrderEmpty" class="pwa-empty">
+        <span class="pwa-empty-icon">🛒</span>
+        <strong>Tu orden está vacía</strong>
+        <p>Explora el menú y añade tus sabores favoritos.</p>
+        <button type="button" class="btn btn-primary" data-view="menu">🍨 Explorar el menú</button>
+      </div>
+
+      <div id="pwaOrderContent" class="pwa-order-content hidden">
+        <ul id="pwaOrderList" class="pwa-order-list"></ul>
+
+        <div class="pwa-card pwa-summary">
+          <div class="pwa-summary-row"><span>Productos</span><strong id="pwaItemsCount">0</strong></div>
+          <div class="pwa-summary-row"><span>Subtotal</span><strong id="pwaSubtotal">0 BOB</strong></div>
+          <div class="pwa-summary-total"><span>TOTAL</span><strong id="pwaOrderTotal">0 BOB</strong></div>
+          <button type="button" id="pwaCheckoutBtn" class="btn btn-primary btn-block">💳 Confirmar pedido</button>
+          <button type="button" id="pwaClearCart" class="btn btn-ghost btn-block mt-1">🗑️ Vaciar orden</button>
+        </div>
+
+        <div class="pwa-card pwa-order-note">
+          <span aria-hidden="true">🛵</span>
+          <p>Retiro en tienda en 10–15 min o delivery dentro de la zona central.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CUENTA ─────────────────────────────────────────── -->
+    <section id="view-cuenta" class="pwa-view" data-view-panel="cuenta">
+      <div class="pwa-view-head">
+        <span class="pwa-kicker">Mi cuenta</span>
+        <h1>Cliente o administrador</h1>
+        <p>Personaliza tus pedidos y accede al panel de control.</p>
+      </div>
+
+      <div class="pwa-profile">
+        <div class="pwa-profile-avatar">🍨</div>
+        <div class="pwa-profile-info">
+          <strong id="pwaProfileName">Invitado</strong>
+          <small id="pwaProfileStatus">Modo cliente</small>
+        </div>
+        <span id="pwaAdminBadge" class="badge accent hidden">ADMIN</span>
+      </div>
+
+      <form id="pwaClientForm" class="pwa-card stack" autocomplete="off">
+        <h3>🍨 Mi alias</h3>
+        <p class="small muted">Así te saludaremos y nombraremos tu pedido.</p>
+        <div class="field">
+          <label for="pwaClientAlias">Nombre / alias</label>
+          <input id="pwaClientAlias" class="input" type="text" maxlength="32" placeholder="Ej: Sofi y Bruno">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Guardar alias</button>
+      </form>
+
+      <div class="pwa-card pwa-admin-card">
+        <h3>🔐 Acceso administrador</h3>
+        <p class="small muted">Desbloquea bitácoras, ventas y control de caja.</p>
+        <form id="pwaAdminForm" class="stack mt-1" autocomplete="off">
+          <div class="field"><label for="pwaAdminUser">Usuario</label><input id="pwaAdminUser" class="input" type="text" maxlength="30" placeholder="admin"></div>
+          <div class="field"><label for="pwaAdminPass">Contraseña</label><input id="pwaAdminPass" class="input" type="password" maxlength="40" placeholder="••••••••"></div>
+          <p id="pwaAdminError" class="form-error" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-block">Entrar como admin</button>
+        </form>
+        <button type="button" id="pwaAdminLogout" class="btn btn-danger btn-block hidden mt-2">🚪 Cerrar sesión admin</button>
+        <p class="pwa-hint">Práctica: <strong>admin / helado123</strong> · <strong>cajero / fresa2026</strong></p>
+      </div>
+
+      <div id="pwaInstallCard" class="pwa-card pwa-install-card hidden">
+        <h3>📲 Instalar la app</h3>
+        <p class="small muted">Accede más rápido y úsala sin conexión.</p>
+        <button type="button" id="pwaInstallBtn" class="btn btn-accent btn-block mt-1">Instalar ICE CREAM</button>
+      </div>
+
+      <div class="pwa-card">
+        <h3>📞 Contacto y horarios</h3>
+        <ul class="pwa-contact-list">
+          <li><span>📍</span><div><strong>Dirección</strong><small>Av. Principal #123, Zona Comercial</small></div></li>
+          <li><span>📞</span><div><strong>Pedidos</strong><small>+591 67301341</small></div></li>
+          <li><span>⏰</span><div><strong>Horario</strong><small>Lun a dom · 10:00 a 22:00</small></div></li>
+          <li><span>✉️</span><div><strong>Correo</strong><small>hola@icecream.bo</small></div></li>
+        </ul>
+        <a class="btn btn-wa btn-block mt-2" href="https://wa.me/59167301341" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
+      </div>
+
+      <button type="button" id="pwaResetData" class="pwa-danger-link">🧹 Borrar mi alias y mi orden guardada</button>
+    </section>
+
+    <!-- ── BITÁCORAS (ADMIN) ──────────────────────────────── -->
+    <section id="view-bitacora" class="pwa-view admin-only" data-view-panel="bitacora">
+      <div class="pwa-view-head pwa-view-head-row">
+        <div>
+          <span class="pwa-kicker">Administración</span>
+          <h1>📊 Bitácoras</h1>
+          <p>Eventos, ventas y caja de la heladería.</p>
+        </div>
+        <button type="button" id="pwaRefreshLogs" class="btn btn-ghost btn-sm">↻</button>
+      </div>
+
+      <div class="pwa-kpis">
+        <div class="kpi"><span class="kpi-label">Ventas</span><strong class="kpi-value" id="pwaKpiVentas">0 BOB</strong></div>
+        <div class="kpi"><span class="kpi-label">Pedidos</span><strong class="kpi-value" id="pwaKpiPedidos">0</strong></div>
+        <div class="kpi"><span class="kpi-label">Eventos</span><strong class="kpi-value" id="pwaKpiEventos">0</strong></div>
+        <div class="kpi"><span class="kpi-label">Ticket</span><strong class="kpi-value" id="pwaKpiTicket">0 BOB</strong></div>
+      </div>
+
+      <div class="pwa-card">
+        <h3>📋 Bitácora de eventos</h3>
+        <div id="pwaLogEventos" class="log-box" aria-live="polite"></div>
+      </div>
+
+      <div class="pwa-card">
+        <h3>🛒 Ventas confirmadas</h3>
+        <div id="pwaLogVentas" class="log-box" aria-live="polite"></div>
+      </div>
+
+      <div class="pwa-admin-actions">
+        <button type="button" id="pwaClearLogs" class="btn btn-danger btn-block">🗑️ Limpiar bitácoras</button>
+        <button type="button" id="pwaLogoutBottom" class="btn btn-ghost btn-block">🚪 Cerrar sesión</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- DOCK INFERIOR -->
+  <nav class="pwa-dock" aria-label="Navegación de la app">
+    <button type="button" class="pwa-dock-btn active" data-view="inicio"><span>🏠</span><small>Inicio</small></button>
+    <button type="button" class="pwa-dock-btn" data-view="menu"><span>🍨</span><small>Menú</small></button>
+    <button type="button" class="pwa-dock-btn" data-view="orden">
+      <span>🛒</span><small>Orden</small><i id="pwaDockCount">0</i>
+    </button>
+    <button type="button" class="pwa-dock-btn" data-view="cuenta"><span>👤</span><small>Cuenta</small></button>
+    <button type="button" class="pwa-dock-btn admin-only" data-view="bitacora"><span>📊</span><small>Bitácora</small></button>
+  </nav>
+
+  <!-- MODAL DETALLE -->
+  <div id="pwaDetailModal" class="modal" aria-hidden="true">
+    <div class="modal-card pwa-sheet" role="dialog" aria-modal="true" aria-labelledby="pwaDetailTitle">
+      <div class="modal-head">
+        <div>
+          <span id="pwaDetailCat" class="badge accent">Detalle</span>
+          <h3 id="pwaDetailTitle" class="modal-title mt-1">Sabor</h3>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div class="pwa-detail-media"><img id="pwaDetailImg" src="" alt="Detalle del helado"></div>
+      <p id="pwaDetailSub" class="pwa-detail-sub"></p>
+      <p id="pwaDetailDesc" class="small muted"></p>
+      <p id="pwaDetailNota" class="pwa-detail-note"></p>
+      <div class="pwa-detail-total"><span>PRECIO</span><strong id="pwaDetailPrice">0 BOB</strong></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal>Cerrar</button>
+        <button type="button" id="pwaDetailAdd" class="btn btn-primary">🛒 Añadir a la orden</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CHECKOUT -->
+  <div id="pwaCheckoutModal" class="modal" aria-hidden="true">
+    <div class="modal-card pwa-sheet" role="dialog" aria-modal="true" aria-labelledby="pwaCheckoutTitle">
+      <div class="modal-head">
+        <div>
+          <h3 id="pwaCheckoutTitle" class="modal-title">Confirmar pedido</h3>
+          <p class="modal-sub">Revisa tu orden y completa los datos.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div id="pwaCheckoutResumen" class="pwa-checkout-resumen"></div>
+      <div class="pwa-detail-total"><span>TOTAL A PAGAR</span><strong id="pwaCheckoutTotal">0 BOB</strong></div>
+      <div class="stack mt-2">
+        <div class="field"><label for="pwaCheckoutNombre">Nombre del cliente *</label><input id="pwaCheckoutNombre" class="input" type="text" maxlength="50" placeholder="¿A nombre de quién?"></div>
+        <div class="field"><label for="pwaCheckoutPhone">Celular</label><input id="pwaCheckoutPhone" class="input" type="tel" maxlength="12" placeholder="Ej: 71234567"></div>
+        <div class="field"><label for="pwaCheckoutEntrega">Entrega</label>
+          <select id="pwaCheckoutEntrega" class="select">
+            <option value="Retiro en tienda">Retiro en tienda</option>
+            <option value="Delivery zona central">Delivery zona central</option>
+          </select>
+        </div>
+        <div class="field"><label for="pwaCheckoutNotas">Notas</label><input id="pwaCheckoutNotas" class="input" type="text" maxlength="120" placeholder="Sin nueces, cucharas extra…"></div>
+      </div>
+      <p id="pwaCheckoutError" class="form-error" role="alert"></p>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal>Cancelar</button>
+        <button type="button" id="pwaCheckoutConfirm" class="btn btn-primary">💳 Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ÉXITO -->
+  <div id="pwaSuccessModal" class="modal" aria-hidden="true">
+    <div class="modal-card compact" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <h3 class="modal-title">¡Pedido confirmado! 🍦</h3>
+          <p class="modal-sub">Gracias por elegir ICE CREAM.</p>
+        </div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Cerrar">✕</button>
+      </div>
+      <div id="pwaSuccessBody" class="stack"></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close-modal data-view="menu">Seguir explorando</button>
+        <button type="button" id="pwaSuccessWa" class="btn btn-wa">💬 WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <noscript><p class="pwa-noscript">Activa JavaScript para usar la heladería.</p></noscript>
+
+  <script src="shared/core.js"></script>
+  <script src="../data/catalogo.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

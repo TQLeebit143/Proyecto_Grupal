@@ -1,0 +1,28 @@
+﻿{
+  "id": "./",
+  "name": "ICE CREAM — Heladería Artesanal",
+  "short_name": "ICE CREAM",
+  "description": "Helados artesanales: cremosos, paletas frutales, cacao gourmet y copas especiales.",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff7f2",
+  "theme_color": "#ff70a6",
+  "categories": ["food", "shopping"],
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

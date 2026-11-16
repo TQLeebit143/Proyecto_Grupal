@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7fb"/>
+      <stop offset="1" stop-color="#ffd9e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" fill="url(#g)"/>
+  <circle cx="320" cy="190" r="118" fill="none" stroke="#e64980" stroke-opacity=".22" stroke-width="4"/>
+  <text x="320" y="232" font-size="112" text-anchor="middle" dominant-baseline="middle">🍦</text>
+  <text x="320" y="356" font-size="20" text-anchor="middle" fill="#b03a62" font-family="Segoe UI, sans-serif" font-weight="700" letter-spacing="3">IMAGEN NO DISPONIBLE</text>
+</svg>

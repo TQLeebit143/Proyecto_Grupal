@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe3ef"/>
+      <stop offset="1" stop-color="#ffc2da"/>
+    </linearGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8a95f"/>
+      <stop offset="1" stop-color="#c17b35"/>
+    </linearGradient>
+    <linearGradient id="scoop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff8f2"/>
+      <stop offset="1" stop-color="#ffe0ec"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff70a6"/>
+      <stop offset="1" stop-color="#e64980"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="418" cy="98" r="34" fill="#fff" opacity=".55"/>
+  <circle cx="88" cy="128" r="18" fill="#fff" opacity=".5"/>
+  <path d="M256 470 174 300h164z" fill="url(#cone)"/>
+  <path d="m212 335 30 84m28-84 30 84M196 380h120" stroke="#a56222" stroke-width="9" stroke-linecap="round" opacity=".55"/>
+  <circle cx="256" cy="268" r="86" fill="url(#scoop)" stroke="#ffb0cb" stroke-width="8"/>
+  <circle cx="256" cy="184" r="72" fill="url(#pink)"/>
+  <path d="M207 172c10-26 37-42 63-38" fill="none" stroke="#ffd1e2" stroke-width="12" stroke-linecap="round" opacity=".85"/>
+  <circle cx="238" cy="210" r="7" fill="#7a2d47"/>
+  <circle cx="276" cy="210" r="7" fill="#7a2d47"/>
+  <path d="M240 232c10 10 24 10 34 0" fill="none" stroke="#7a2d47" stroke-width="7" stroke-linecap="round"/>
+  <path d="m349 224 12 28 28 12-28 12-12 28-12-28-28-12 28-12z" fill="#fff" opacity=".9"/>
+</svg>
